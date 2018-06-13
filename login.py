@@ -5,9 +5,10 @@
 # @File    : login.py
 
 ofile1 = open("loginlist.txt","r")
-ofile2 = open("lockeduser.txt", "r+")
+ofile2 = open("lockeduser.txt", "a+")
 listsaved = []
 listlocked = []
+lines2 = 0
 while 1:
     line = ofile1.readline()
     if not line:
@@ -20,6 +21,7 @@ while 1:
     if not line2:
         break
     else:
+        lines2 += 1
         listlocked.append(line2)
 print("welcome to join the login interface!")
 for i in range(3):
@@ -40,7 +42,7 @@ for i in range(3):
             print("login wrongly")
         if i == 2:
             ofile2.seek(0)
-            ofile2.truncate(0)
-            ofile2.write(username)
+            #ofile2.truncate(0)
+            ofile2.write(username + "\n")
             ofile2.close()
             print("you had tried 3 time already, the user have locked.")
